@@ -1,32 +1,45 @@
-import { useRef , useState } from "react";
+import { useEffect, useRef , useState } from "react";
 
 function App() {
+
   let add_input_ref = useRef(null)
   let ul_ref = useRef(null);
+  let c;
+  let balls = [];
+
+  useEffect(() => {
+    let can = document.querySelector("canvas");
+    can.width = window.innerWidth;
+    can.height = window.innerHeight;
+    c = can.getContext("2d");
+    balll();
+    animate();
+  },[])
 
 const [empty , setempty] = useState(false)
 
   return (
     <>
       <div className="body">
-        <div className="container-fluid vh-100 p-1 bg-primary ">
+      <canvas></canvas>
+        <div className="container-fluid vh-100 p-1">
           <div className="d-flex justify-content-center align-items-center flex-column h-100">
-            <div className="display-1 text-center text-light to-do-list">
-              To Do List
+            <div className=" text-center to-do-list">
+              ToDo List
             </div>
             <div className="container-md p-1">
-              <div className="main-cart bg-light rounded-2 p-1 m-auto">
-                <div class="input-group my-1">
+              <div className="main-cart rounded-2 p-1 m-auto">
+                <div className="input-group my-1 p-1">
                   <input
                     type="text"
-                    class="form-control"
-                    placeholder="task to do "
+                    className="form-control"
+                    placeholder="add task"
                     aria-label="Recipient's"
                     aria-describedby="button-addon2"
                     ref={add_input_ref}
                   />
                   <button
-                    class="btn btn-outline-primary"
+                    className="btn btn-outline-primary"
                     type="button"
                     id="button-addon2"
                     onClick={() => {
@@ -100,7 +113,7 @@ const [empty , setempty] = useState(false)
                     </li>
                   </ul>
                   {empty ? (
-                    <p className="empty-list text-secondary">
+                    <p className="empty-list text-light">
                       your list is empty
                     </p>
                   ) : null}
@@ -155,11 +168,14 @@ const [empty , setempty] = useState(false)
   }
 
   function handledlt(event) {
-    event.parentNode.remove()
-    let ul = document.querySelector('.ul-list')
+    event.parentNode.style.animation = 'hide 0.4s'
+    setTimeout(() => { 
+    event.parentNode.remove();
+    let ul = document.querySelector(".ul-list");
     if (ul.children.length === 0) {
-      setempty(true)
+      setempty(true);
     }
+    },330)
   }
 
   function handlecheck(e) {
@@ -180,6 +196,51 @@ const [empty , setempty] = useState(false)
       li.style.height = "45px";
       li.style.width = "100%";
     }
+  }
+
+  // ..........................................canvas
+  
+  function balll() {
+    class Ball {
+      constructor() {
+        this.r = randomm(220,240);
+        this.x = randomm(0 + this.r, window.innerWidth - this.r);
+        this.y = randomm(0 + this.r, window.innerHeight - this.r);
+        this.vx = (Math.random() - 0.5) * 3;
+        this.vy = (Math.random() - 0.5) * 3;
+      }
+      draw() {
+        c.beginPath();
+        c.arc(this.x, this.y, this.r, 0, 2 * Math.PI);
+        c.fillStyle = "rgb(30, 160, 255 , 0.3)";
+        c.fill();
+      }
+      update() {
+        if (this.x - this.r < 0 || this.x + this.r > window.innerWidth) {
+          this.vx = -this.vx;
+        }
+        if (this.y - this.r < 0 || this.y + this.r > window.innerHeight) {
+          this.vy = -this.vy;
+        }
+        this.x += this.vx;
+        this.y += this.vy;
+        this.draw();
+      }
+    }
+    for (let i = 0; i < 80; i++) {
+      balls.push(new Ball());
+    }
+  }
+  function animate() {
+    c.clearRect(0, 0, window.innerWidth, window.innerHeight );
+    balls.forEach((ball) => {
+      ball.update();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  function randomm(min, max) {
+    return Math.floor(Math.random() * (max - min + 1) + min);
   }
 }
 

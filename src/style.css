@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Secular+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Secular+One&display=swap&family=Bebas+Neue&display=swap');
 
 *{
     font-family: 'Roboto' , sans-serif;
@@ -8,15 +8,24 @@
 body{
     font-size: 18px;
 }
+canvas{
+    position: absolute;
+    z-index: -1;
+}
 .container-fluid{
    padding: 0;
 }
 .to-do-list{
-    font-family: "Secular One " , sans-serif;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 4em;
+  color: #fff;
+  text-shadow: 1px 1px 5px #fff;
 }
 .main-cart{
     width: 45%;
     min-height: 250px;
+    box-shadow:1px 1px 5px #222222 ;
+    background-color: #fff;
 }
 .flex-list{
     display: flex;
@@ -45,10 +54,12 @@ body{
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-    background-color: #0062ed;
+    background-color:#0D6EFD;
     margin: 10px;
     border-radius: 5px;
     box-shadow: 1px 1px 5px #222222;
+    animation-name: li-animation;
+    animation-duration: 0.5s;
 }
 .span-list{
     display: flex;
@@ -84,6 +95,7 @@ body{
     font-family: "Secular One " , sans-serif ;
     font-size: 1.1em;
     margin-bottom:20px;
+    animation: empty 0.4s ;
 }
 
 
@@ -114,3 +126,34 @@ body{
         max-height: 250px;
     }
 }
+
+
+@keyframes li-animation {
+    0%{
+        opacity: 0;
+        margin-left: 50px;
+    }
+    100%{
+        opacity: 1;
+        margin: 10px ;
+    }
+}
+
+@keyframes hide {
+    0%{
+        opacity: 1;
+        margin: 10px ;
+    }
+    100%{
+        opacity: 0;
+        margin-right: 50px;
+    }
+}
+    @keyframes empty {
+        0%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
