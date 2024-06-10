@@ -91,26 +91,6 @@ const [empty , setempty] = useState(false)
                         <i class="bi bi-trash3"></i>
                       </button>
                     </li>
-                    <li className="li-list">
-                      <span className="span-list">
-                        <input
-                          className="checkbox-list"
-                          type="checkbox"
-                          onChange={(e) => {
-                            handlecheck(e.currentTarget);
-                          }}
-                        />
-                        <p className="text-list">lets start it</p>
-                      </span>
-                      <button
-                        className="button-list"
-                        onClick={(e) => {
-                          handledlt(e.currentTarget);
-                        }}
-                      >
-                        <i class="bi bi-trash3"></i>
-                      </button>
-                    </li>
                   </ul>
                   {empty ? (
                     <p className="empty-list text-light">
