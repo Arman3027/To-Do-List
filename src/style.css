@@ -7,6 +7,7 @@
 }
 body{
     font-size: 18px;
+    background-color: #b4d2ff;
 }
 canvas{
     position: absolute;
@@ -24,7 +25,7 @@ canvas{
 .main-cart{
     width: 45%;
     min-height: 250px;
-    box-shadow:1px 1px 5px #222222 ;
+    box-shadow:1px 1px 10px #414141bd ;
     background-color: #fff;
 }
 .flex-list{
@@ -83,7 +84,7 @@ canvas{
     outline: none;
     border: none;
     border-radius: 0 5px 5px 0;
-    transition: all 0.3s ease;
+    transition: all 0.2s ease;
     background-color: #ffffff00;
     color: #fff;
 }
