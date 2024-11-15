@@ -100,6 +100,23 @@ canvas{
 }
 
 
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #a5c9ff;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #0D6EFD;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0d69f3;
+}
 /* ................................................................. responsive  */
 
 @media only screen and (max-width: 992px) {
